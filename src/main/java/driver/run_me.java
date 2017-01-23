@@ -53,6 +53,7 @@ public class run_me {
 
     public run_me(String u){
         bballStat = new StatNLPUtterance(u);
+//        bballStat = new StatNLPUtterance("bah blah blah");
         ib = new IBuilder();
         sc = new Scorer();
     }    
@@ -105,6 +106,9 @@ public class run_me {
         for(Candidate c : rm.ib.candidates) {
             System.out.println("RUN_ME: SCORED INTERPRETATION\n" + c.toString() + "\n\n");
         }
+
+        // here's the original wiry, do whatever you want with it
+        System.out.println("RUN_ME: original query [" + rm.bballStat.getOrigQry() + "]");
 
     }
     
