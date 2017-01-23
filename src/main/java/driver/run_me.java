@@ -46,14 +46,14 @@ public class run_me {
     // and the interpretation builder once, when we start the service. Just a little re-organization.
     //
 
-    StatNLPUtterance bballStat;
+    StatNLPUtterance ut;
     IBuilder ib;
     Scorer sc;
 
 
     public run_me(String u){
-        bballStat = new StatNLPUtterance(u);
-//        bballStat = new StatNLPUtterance("bah blah blah");
+        ut = new StatNLPUtterance(u);
+//        ut = new StatNLPUtterance("bah blah blah");
         ib = new IBuilder();
         sc = new Scorer();
     }    
@@ -69,14 +69,14 @@ public class run_me {
          *
         // this method just gives us back the orig query
         System.out.println("RUN_ME: Original Query As a list");
-        for(StatEntity se : rm.bballStat.getOrigQryList())
+        for(StatEntity se : rm.ut.getOrigQryList())
             System.out.println(se.toString());
         
         
         // this provides access to all the possible tokens in case we need them
         //  for some reason I haven't thought of yet
         System.out.println("RUN_ME: NG LIST");
-        for(StatEntity se : rm.bballStat.getToks()){
+        for(StatEntity se : rm.ut.getToks()){
             System.out.println("RUN_ME: " + se.toString());
         }
             
@@ -84,14 +84,14 @@ public class run_me {
         // this shows us the meaningfully interpreted words/phrases
         // within whatever domain we're working
         System.out.println("RUN_ME: WDS LIST");
-        for(StatEntity se : rm.bballStat.getMeaningfulWds()){
+        for(StatEntity se : rm.ut.getMeaningfulWds()){
             System.out.println("RUN_ME: " + se.toString());
         }
         */
         
         // this slightly complicated method generates all our interpretations
         System.out.println("INTERPRETATIONS");
-        rm.ib.buildAllInterpretations(rm.bballStat.getOrigQryList(), rm.bballStat.getMeaningfulWds());
+        rm.ib.buildAllInterpretations(rm.ut.getOrigQryList(), rm.ut.getMeaningfulWds());
         for(Candidate c : rm.ib.candidates){
             System.out.println("RUN_ME: CANDIDATE INTERPRETATION\n" + c.toString() + "\n\n");
         }
@@ -107,8 +107,8 @@ public class run_me {
             System.out.println("RUN_ME: SCORED INTERPRETATION\n" + c.toString() + "\n\n");
         }
 
-        // here's the original wiry, do whatever you want with it
-        System.out.println("RUN_ME: original query [" + rm.bballStat.getOrigQry() + "]");
+        // here's the original utterance, do whatever you want with it
+        System.out.println("RUN_ME: original query [" + rm.ut.getOrigQry() + "]");
 
     }
     
